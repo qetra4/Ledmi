@@ -40,12 +40,11 @@ urlpatterns = [
     re_path(r'^orders/', include(('orders.url', 'orders'), namespace='orders')),
     re_path(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     re_path(r'^shop/', include(('shop.url', 'shop'), namespace='shop')),
-    #re_path(r'^admin/', admin.site.urls),
-    #re_path(r'^shop/',  include(('shop.url', 'shop'), namespace='shop')),
-    #re_path(r'^cart/',  include(('cart.urls', 'cart'), namespace='cart')),
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+# Обработка статических и медиа файлов во время разработки
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-result = finders.find('style.css')
-searched_locations = finders.searched_locations
+

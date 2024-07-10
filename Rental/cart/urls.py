@@ -1,6 +1,7 @@
 from django.urls import re_path, path
 from . import cart_views
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     re_path(r'^$', cart_views.cart_detail, name='cart_detail'),
