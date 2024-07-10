@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% block head %}
+<head>
+{% load static %}
+<title>Your shopping cart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'rental.css' %}" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{% endblock %}
+
+{% block content %}
+
+<body class="all">
+<div class="wrapper" align="center">
+<header>
+    <div class="header-wrapper">
+     <div class="holder">
+     <img src="{% static 'header.png' %}" alt=""/>
+     </div>
+      <div class="dropdown">
+          <button id="btn" class="drop"><img src="{% static 'icon-menu.svg' %}"></button>
+            <div class="dropdown-content">
+             <a href="/" target="_self">COMMERCIALS</a>
+             <a href="/shortfilms" target="_self">SHORT FILMS</a>
+             <a href="/shortfilms" target="_self">COLOR GRADING</a>
+             <a style="color: #F9A907; text-decoration: none;">RENTAL</a>
+             <a href="/contacts" target="_self">CONTACTS</a>
+            </div>
+      </div>
+      <div class="menu" align="center">
+          <div class="menu-piece comp">
+             <a href="/" target="_self">COMMERCIALS</a>
+             <a href="/shortfilms" target="_self">SHORT FILMS</a>
+             <a href="/shortfilms" target="_self">COLOR GRADING</a>
+          </div>&nbsp;
+          <div class="menu-piece-horizontal comp">
+             <a style="color: #F9A907; text-decoration: none;">RENTAL</a>
+        &nbsp;&nbsp; &nbsp;&nbsp;<a href="/contacts" target="_self">CONTACTS</a>
+          </div>
+     </div>
+    </div>
+</header>
+
+<div class="aside content">
+<div class="cart">
+    <a href="/cart/">Tap to see your cart</a>
+</div>
+
+<h3>Categories</h3>
+        <ul>
+            <li {% if not category %} class="selected" {% endif %}>
+                <a href="/shop/">All</a>
+            </li>
+            {% for c in categories %}
+                <li {% if category.slug == c.slug %}class="selected"{% endif %}>
+                    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+</div>
+<div class="content aligner">
+
+
+<div class="product-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+
+    <div class="items">
+    {% for product in products %}
+
+        <div class="item">
+            <div class="grid_layout">
+
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+            <div class="item_content">
+            <div class="name_price">
+            <p class="name">{{ product.name }}</p>
+            <p class="price">${{ product.price }}/day</p>
+            </div>
+            <div class="two_buttons">
+            <div class="button_rent">
+            <form action="{% url 'cart:cart_add' product_id=product.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <div class="flex_add_rent" id="input">
+                <input class="tap_to_rent" type="submit" value="Add to cart" onclick="add(this.id)">
+                </div>
+            </form>
+            </div>
+            <div class="button_description" id="button">
+            <button class="tap_to_read" onclick="toggle_visibility(this.id);">Show description</button>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div id="description">
+                <p class="description" style="display: none">{{ product.description}}</p>
+            </div>
+
+        </div>
+    {% endfor %}
+    </div>
+
+</div><br><br>
+</div>
+<footer>
+          <div class="content">
+          <div class="container">
+          <div class="footer_container">
+          <div class="footer_links">
+          <div class="phone_row">
+          <a style="padding-right: 3vw; text-decoration: none;">© 2023 LEDMI PRODUCTION</a>
+          </div>
+          <div class="phone_row phone-links-row">
+          <a href="https://vimeo.com/ledmi" class="footer_link" style="text-decoration: underline;">Vimeo</a>
+          <a href="https://www.youtube.com/@ledmi" style="text-decoration: underline;">Youtube</a>
+          <a href="https://www.instagram.com/ledmi_/" style="text-decoration: underline;">Instagram</a>
+          </div>
+          <a class="phone_row phone_phone" style="text-decoration: none;">+38268617599</a>
+          </div>
+          <a class="phone_row last_phone_row" style="text-decoration: none;">DEVELOPMENT BY IOANNA</a>
+          </div>
+          </div>
+          </div>
+</footer>
+</div>
+    <script type="text/javascript" src="{% static 'description.js' %}"></script>
+    <script type="text/javascript" src="{% static 'footer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'nav.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

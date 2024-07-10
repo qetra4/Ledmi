@@ -1,0 +1,268 @@
+  .aligner {
+    margin-left: 25%;
+    padding: 1rem;
+  }
+
+ .aside {
+    max-width: 30%;
+    padding: 1rem 0;
+    padding-right: 2vw;
+    margin: 1vw;
+    float: left;
+    max-height: 100%;
+  }
+
+  h1 {
+    padding: 3vh 0;
+    font-size: 4.5vw;
+    margin: 0;
+  }
+
+  h3 {
+    padding-top: 3vh;
+    font-size: 2.5vw;
+    margin: 0;
+  }
+
+  button {
+    color: #FFA903;
+    font-size: 1.4vw;
+  }
+
+  label {
+    font-size: 1.6vw;
+  }
+
+  input {
+    margin-top: 0.4vw;
+    font-size: 1.4vw;
+  }
+
+  select {
+    font-size: 1.4vw;
+  }
+
+  p {
+    margin: 0;
+  }
+
+ li {
+    text-align: left;
+    padding: 0.8 0vw;
+    font-size: 2vw;
+ }
+
+  .product-list img {
+      border-top-left-radius: 1vw;
+      border-bottom-left-radius: 1vw;
+      width: 100%;
+      height: auto;
+  }
+
+  .grid_layout {
+      display: grid;
+      gap: 0px;
+      grid-template-columns: 21vw auto;
+  }
+
+  .item {
+      position: relative;
+      border: 0.1rem solid #FFA903;
+      margin-bottom: 7vh;
+      border-radius: 1.2vw;
+      color: black;
+      text-align: left;
+      width: 84%;
+  }
+
+  .item_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+  }
+
+  .button_rent {
+    color: #FFF;
+    text-align: center;
+  }
+
+  .tap_to_rent {
+    display: flex;
+    font-size: 1.2vw;
+  }
+
+  .flex_add_rent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .added {
+    display: flex;
+    align-self: end;
+    padding-left: 2vw;
+    font-size: 1.2vw;
+  }
+
+  .name {
+    color: #F9A907;
+    padding: 2vw;
+    padding-top: 1.3vw;
+    padding-bottom: 0px;
+    text-align: center;
+    font-size: 2vw;
+    font-weight: 800;
+  }
+
+  .price {
+    color: #F9A907;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.5vw;
+  }
+
+  .button_description {
+    font-size: 1.5vw;
+    text-align: right;
+    padding-right: 3vw;
+    padding-bottom: 1vw;
+    padding-top: 2vw;
+  }
+
+  .description {
+    padding: 1.5vw;
+    color: #CCC;
+    font-family: 'ledmi';
+    font-size: 1.7vw;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .cart {
+    font-size: 2vw;
+    padding: 1vw;
+    margin-top: 2vw;
+    width: fit-content;
+    border: 0.1rem solid #FFA903;
+    border-radius: 1vw;
+  }
+
+#button{
+  font-size: 1.2vw;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+
+
+@media (max-width: 700px) {
+
+  option {
+   min-height: 0vh !important;
+   height: 2vh;
+  }
+
+  header {
+    padding: 2vw 0 0;
+  }
+
+  h1 {
+    font-size: 8vw;
+  }
+
+  h3 {
+    padding: 0;
+    font-size: 8vw;
+  }
+
+  li {
+    padding-left: 5vw;
+    font-size: 6vw;
+  }
+
+  .aside {
+    max-width: 100%;
+    margin-right: auto;
+    padding: 0;
+    float: none;
+  }
+
+  .content {
+    margin-bottom: 1rem;
+  }
+
+  .aligner {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .grid_layout {
+      display: grid;
+      grid-template-columns: 33vw auto;
+  }
+
+  .name {
+    color: #F9A907;
+    padding-top: 3vw;
+    text-align: center;
+    font-size: 3.2vw;
+  }
+
+  .price {
+    color: #FFF;
+    text-align: center;
+    font-size: 3.2vw;
+    margin-bottom: -3vw;
+  }
+
+  .button_description {
+    font-size: 3.5vw;
+    text-align: right;
+    padding-right: 3vw;
+    padding-bottom: 1vw;
+  }
+
+  .description {
+    padding: 2vw;
+    color: #CCC;
+    font-family: 'ledmi';
+    font-size: 3.5vw;
+  }
+
+  .tap_to_rent {
+    padding: 0;
+    font-size: 2.2vw;
+  }
+
+  .tap_to_read {
+    font-size: 2.2vw;
+  }
+
+  .cart {
+    font-size: 5vw;
+    padding: 2vw;
+    margin-top: 0;
+    margin-bottom: 12vw;
+    margin-top: -3vw;
+  }
+
+
+  label {
+    font-size: 2.7vw;
+  }
+
+  select {
+    font-size: 2.5vw;
+  }
+
+  form {
+    margin-top: 1.5vw;
+  }
+
+
+}

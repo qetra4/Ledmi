@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<head>
+{% load static %}
+<title>Your shopping cart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'rental.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'cart.css' %}" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{% endblock %}
+
+
+{% block content %}
+<body class="all">
+    <div class="wrapper"  align="center">
+
+    <br><h1><b>QQ</b></h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Отправить</button>
+    <br><br><br>
+    </form>
+
+
+    <footer>
+              <div class="content">
+              <div class="container">
+              <div class="footer_container">
+              <div class="footer_links">
+              <div class="phone_row">
+              <a style="padding-right: 3vw; text-decoration: none;">© 2023 LEDMI PRODUCTION</a>
+              </div>
+              <div class="phone_row phone-links-row">
+              <a href="https://vimeo.com/ledmi" class="footer_link" style="text-decoration: underline;">Vimeo</a>
+              <a href="https://www.youtube.com/@ledmi" style="text-decoration: underline;">Youtube</a>
+              <a href="https://www.instagram.com/ledmi_/" style="text-decoration: underline;">Instagram</a>
+              </div>
+              <a class="phone_row phone_phone" style="text-decoration: none;">+38268617599</a>
+              </div>
+              <a class="phone_row last_phone_row" style="text-decoration: none;">DEVELOPMENT BY IOANNA</a>
+              </div>
+              </div>
+              </div>
+    </footer>
+    </div>
+
+    <script type="text/javascript" src="{% static 'description.js' %}"></script>
+    <script type="text/javascript" src="{% static 'nav.js' %}"></script>
+
+
+{% endblock %}
+</body>
+</html>

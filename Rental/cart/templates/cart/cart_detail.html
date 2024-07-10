@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% block head %}
+<head>
+{% load static %}
+<title>Your shopping cart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'rental.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'cart.css' %}" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{% endblock %}
+
+{% block content %}
+<body class="all">
+    <div class="wrapper"  align="center">
+    <header>
+
+        <div class="header-wrapper">
+         <div class="holder">
+         <img src="{% static 'header.png' %}" alt=""/>
+         </div>
+          <div class="dropdown">
+              <button id="btn" class="drop"><img src="{% static 'icon-menu.svg' %}"></button>
+                <div class="dropdown-content">
+                 <a href="/" target="_self">COMMERCIALS</a>
+                 <a href="/shortfilms" target="_self">SHORT FILMS</a>
+                 <a href="/shortfilms" target="_self">COLOR GRADING</a>
+                 <a style="color: #F9A907; text-decoration: none;">RENTAL</a>
+                 <a href="/contacts" target="_self">CONTACTS</a>
+                </div>
+          </div>
+          <div class="menu" align="center">
+              <div class="menu-piece comp">
+                 <a href="/" target="_self">COMMERCIALS</a>
+                 <a href="/shortfilms" target="_self">SHORT FILMS</a>
+                 <a href="/shortfilms" target="_self">COLOR GRADING</a>
+              </div>&nbsp;
+              <div class="menu-piece-horizontal comp">
+                 <a style="color: #F9A907; text-decoration: none;">RENTAL</a>
+            &nbsp;&nbsp; &nbsp;&nbsp;<a href="/contacts" target="_self">CONTACTS</a>
+              </div>
+
+         </div>
+        </div>
+    </header>
+
+    <p class="cart">Your cart</p>
+        <div class="items">
+        <div class="item head">
+        <div class="grid_layout">
+            <p>Image</p>
+            <p>Product</p>
+            <p class="QTY">QTY</p>
+            <p>Remove</p>
+            <p>Unit price</p>
+            <p>Price</p>
+        </div>
+        </div>
+        {% for item in cart %}
+        {% with product=item.product %}
+        <div class="item">
+        <div class="grid_layout white">
+        <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'img/no_image.png' %} {% endif %}">
+        <div>
+        <p>{{ product.name }}</p>
+        </div>
+        <div>
+        <p>{{ item.quantity }}</p>
+        </div>
+        <div class="remove">
+        <a href="{% url 'cart:cart_remove' product.id%}">Remove</a>
+        </div>
+        <div>
+        <p class="num">${{ item.price }}</p>
+        </div>
+        <div>
+        <p class="num">${{ item.total_price }}</p>
+        </div>
+            {% endwith %}
+        </div>
+        </div>
+        {% endfor %}
+        <div class="item div_total">
+        <p class="total">Total</p>
+        <p class="total num">${{ cart.get_total_price }}</p>
+        </div>
+        <div class="text-right">
+        <a href="/shop/" class="cart button light">Continue shopping</a>
+        <a href="{% url 'orders:order_create' %}" class="cart button">Checkout</a>
+        </div>
+        </div>
+
+
+    <footer>
+              <div class="content">
+              <div class="container">
+              <div class="footer_container">
+              <div class="footer_links">
+              <div class="phone_row">
+              <a style="padding-right: 3vw; text-decoration: none;">© 2023 LEDMI PRODUCTION</a>
+              </div>
+              <div class="phone_row phone-links-row">
+              <a href="https://vimeo.com/ledmi" class="footer_link" style="text-decoration: underline;">Vimeo</a>
+              <a href="https://www.youtube.com/@ledmi" style="text-decoration: underline;">Youtube</a>
+              <a href="https://www.instagram.com/ledmi_/" style="text-decoration: underline;">Instagram</a>
+              </div>
+              <a class="phone_row phone_phone" style="text-decoration: none;">+38268617599</a>
+              </div>
+              <a class="phone_row last_phone_row" style="text-decoration: none;">DEVELOPMENT BY IOANNA</a>
+              </div>
+              </div>
+              </div>
+    </footer>
+    </div>
+
+    <script type="text/javascript" src="{% static 'description.js' %}"></script>
+    <script type="text/javascript" src="{% static 'footer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'nav.js' %}"></script>
+
+</body>
+</html>
+
+{% endblock %}
+
