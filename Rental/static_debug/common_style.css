@@ -1,0 +1,102 @@
+@font-face {
+    font-family: "ledmi";
+    src: url("ledmi.ttf") format("truetype");
+}
+
+
+html, body {
+    font-family: "ledmi";
+}
+
+
+.wrapper {
+	min-width: 724px;
+	max-width: 1200px;
+	margin: 0 auto;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+}
+
+
+.header {
+	height: 150px;
+	
+}
+
+.menu {
+	margin-top:10px;
+	width:80%;
+	height: 40px;
+	padding-top: 90px;
+}
+
+.menu a {
+	font-family: 'ledmi';
+	color: #FFF;
+	text-decoration: none;	
+}
+
+
+.menu b {
+	font-family: 'ledmi';
+	color: #CCC;
+	text-decoration: none;	
+}
+
+
+.menu a:hover {
+	color: #CCC;
+	text-decoration: underline;
+}
+
+.menu a:visited {
+	color: #CCC;
+}
+
+
+.content {
+	padding: 10 0 100px;
+	padding-top:90px;
+}
+
+
+
+
+.footer {
+	margin: -200px auto 0;
+	min-width: 600px;
+	max-width: 1920px;
+	height: 100px;
+	position: relative;
+}
+
+
+
+.text_header { 
+	font-family: 'ledmi';
+}
+
+.all {
+	font-family: 'ledmi';
+	color:#FFA903;
+	font-size: 24px;
+	text-decoration: none; 
+	background: url("bg.png"), #000;
+}
+
+.content a {
+	font-family: 'ledmi';
+	color: #CCC;
+	text-decoration: none;
+}
+
+.content a:hover {
+	text-decoration:underline;
+	color: #CCC;
+}
+
+.content a:visited {
+	color:#CCC;
+}
+

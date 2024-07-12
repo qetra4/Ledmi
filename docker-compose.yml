@@ -3,6 +3,10 @@ version: '3'
 services:
   web:
     build: ./Rental
+    command: >
+      sh -c "python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn --bind 0.0.0.0:8000 Rental.wsgi:application"
     env_file:
       - .env
     volumes:
@@ -12,6 +16,21 @@ services:
     depends_on:
       - db
 
+  nginx:
+    restart: always
+
+    image: nginx:latest
+
+    ports:
+      - "80:80"
+# монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
+    volumes:
+        - static_volume:/srv/www/Rental/static
+        - media_volume:/srv/www/Rental/media
+        - logs_volume:/srv/www/Rental/logs
+        - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+      - web
 
   db:
     image: postgres:13
@@ -22,3 +41,6 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:
+  logs_volume:

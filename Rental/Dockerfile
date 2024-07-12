@@ -17,8 +17,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Копируем весь проект в рабочую директорию
 COPY . /Rental/
 
-# Указываем порт, который будет использоваться
-EXPOSE 8000
-
-# Команда для запуска контейнера
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "Rental.wsgi:application"]
