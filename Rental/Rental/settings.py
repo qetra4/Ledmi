@@ -180,8 +180,8 @@ CART_SESSION_ID = 'cart'
 
 # Настройки Celery
 CELERY_BROKER_URL = f'amqp://{config("RABBITMQ_DEFAULT_USER")}:{config("RABBITMQ_DEFAULT_PASS")}@{config("RABBITMQ_HOST")}:{config("RABBITMQ_PORT")}//'
-CELERY_BROKER_URL = 'amqp://ioanna:020202@rabbitmq:5672//'
-CELERY_RESULT_BACKEND = 'rpc://'
+#CELERY_BROKER_URL = 'amqp://@rabbitmq:5672//'
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='rpc://')
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'

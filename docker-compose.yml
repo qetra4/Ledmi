@@ -26,8 +26,8 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
     ports:
-      - '5672:5672'
-      - '15672:15672'
+      - "5672:5672"     # порт для AMQP
+      - "15672:15672"   # порт для RabbitMQ Management UI
     networks:
       - webnet        
   
