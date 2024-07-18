@@ -2,7 +2,7 @@ version: '3'
 
 services:
   web:
-    build: ./Rental
+    build: .
     command: >
       sh -c "python manage.py migrate &&
       python manage.py collectstatic --noinput &&
@@ -15,15 +15,31 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - rabbitmq
+    networks:
+      - webnet  
+
+
+  rabbitmq:
+    image: 'rabbitmq:3.8'
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - webnet        
+  
 
   nginx:
     restart: always
-
     image: nginx:latest
-
     ports:
       - "80:80"
-# монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
+
+# монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать.
+#Также директорию с логами и файл настройки, который мы подготовили.
     volumes:
         - static_volume:/srv/www/Rental/static
         - media_volume:/srv/www/Rental/media
@@ -31,6 +47,9 @@ services:
         - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - web
+    networks:
+      - webnet        
+
 
   db:
     image: postgres:13
@@ -38,9 +57,47 @@ services:
       - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - webnet        
+
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile.celery
+    command: celery -A Rental worker --loglevel=info
+    volumes:
+      - .:/Rental
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - webnet
+
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile.celery
+    command: celery -A Rental beat --loglevel=info
+    volumes:
+      - .:/Rental
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - rabbitmq
+    networks:
+      - webnet
+
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
   logs_volume:
+
+networks:
+  webnet:
