@@ -59,6 +59,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - webnet        
+    ports:
+      - "5432:5432"  
 
 
   celery:
