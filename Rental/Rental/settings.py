@@ -177,6 +177,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'  # SMTP сервер Mail.ru
+EMAIL_PORT = 587  # Порт для TLS
+EMAIL_USE_TLS = True  # Использование TLS
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # Ваша почта на Mail.ru
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')  # Пароль от почты
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # Адрес отправителя по умолчанию
+
 
 # Настройки Celery
 CELERY_BROKER_URL = f'amqp://{config("RABBITMQ_DEFAULT_USER")}:{config("RABBITMQ_DEFAULT_PASS")}@{config("RABBITMQ_HOST")}:{config("RABBITMQ_PORT")}//'
