@@ -16,8 +16,19 @@ Rental created with django, docker, postgres, celery+rabbitmq, gunicorn and ngin
     ```sh
     docker-compose up --build
     ``` 
+3. Для управления панелью администратора создайте суперпользователя
+   
+   ```sh
+docker-compose exec web python manage.py createsuperuser
+   ```
 
-2. Откройте браузер и перейдите по адресу:
+4. Для доступа к панели управления nginx активируйте соответствующий плагин
+
+    ```sh
+docker-compose exec rabbitmq rabbitmq-plugins enable rabbitmq_management
+    ```
+
+5. Откройте браузер и перейдите по адресу:
 
     ```
     http://127.0.0.1:8000
