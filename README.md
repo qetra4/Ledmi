@@ -11,6 +11,7 @@ Rental+video gallery created with django, docker, postgres, celery+rabbitmq, gun
 - Python 3.x
 - pip
 - virtualenv
+- docker
 
 ## Установка
 
