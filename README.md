@@ -1,5 +1,5 @@
 # Ledmi
-Rental+video gallery created with django, docker, postgres, celery+rabbitmq, gunicorn and nginx. Adaptive and cross browser. 
+Rental+video gallery created with django, docker, postgresql, celery+rabbitmq, gunicorn and nginx. Adaptive and cross browser. 
 
 <p align="center">
   <img width="500" height="500" src="https://github.com/user-attachments/assets/09219dc3-89b4-4921-a077-2b42a7ad1785">
