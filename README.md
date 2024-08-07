@@ -17,10 +17,10 @@ Rental+video gallery created with django, docker, postgresql, celery+rabbitmq, g
 
 1. Переименуйте файл .env.example в .env и отредактируйте, если хотите настроить проект под себя.
 
-2. Постройте и запустите контейнеры:
+2. Постройте и запустите контейнеры в фоновом режиме:
 
     ```sh
-    docker-compose up --build
+    docker-compose up -d --build
     ``` 
 3. Для управления панелью администратора создайте суперпользователя
    
